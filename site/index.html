@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mini & Giant Me · zoedits</title>
+<meta name="description" content="The exact prompts from the Mini & Giant Me tutorial. Seedream 5.5 → Seedance 2.5, works for any person, outfit and location.">
+<meta property="og:title" content="Mini & Giant Me · the prompts">
+<meta property="og:description" content="The exact prompts from the tutorial. Copy them, swap in your details, make your own.">
+<meta property="og:image" content="img/tiny-in-hand.jpg">
+<meta name="theme-color" content="#FFF4E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gochi+Hand&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --cream:#FFF4E8; --cream-deep:#F7E6D3;
+  --tomato:#E5432E; --tomato-ink:#B8301E;
+  --lime:#D4F53C; --sky:#3E86E0; --sky-soft:#BFD9F5;
+  --grass:#3D8B3A; --pink:#F5B3E2; --pink-soft:#FBD9F0;
+  --ink:#1F1A16; --ink-soft:#4A423B;
+  --f-puff:"Rubik Bubbles","Bricolage Grotesque",system-ui,sans-serif;
+  --f-sans:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+  --f-hand:"Gochi Hand","Comic Sans MS",cursive;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r-lg:36px; --r-md:24px; --r-sm:16px;
+  --gutter:max(16px, env(safe-area-inset-left));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--f-sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1100px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* pills & chips */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 26px;border-radius:999px;border:2px solid var(--ink);background:var(--lime);color:var(--ink);font:800 15px/1 var(--f-sans);text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;box-shadow:0 4px 0 var(--ink)}
+.pill:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
+.pill:active{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.pill-ink{background:var(--ink);color:var(--cream);box-shadow:0 4px 0 var(--tomato)}
+.pill-ink:hover{box-shadow:0 6px 0 var(--tomato)}
+.pill[data-done]{background:var(--grass);color:#fff}
+.chip{display:inline-block;padding:9px 18px;border:2px solid var(--ink);border-radius:999px;background:var(--cream);font:400 20px/1 var(--f-hand);white-space:nowrap}
+
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:800 20px/1 var(--f-sans);text-decoration:none;letter-spacing:-.02em}
+.logo img{display:block;width:auto;height:64px;transition:transform .2s ease}
+.logo span{font:800 24px/1 var(--f-sans);letter-spacing:-.03em;color:var(--ink)}
+.logo:hover img{transform:rotate(-6deg) scale(1.05)}
+@media (max-width:560px){.logo img{height:52px}}
+.nav .pill{min-height:44px;padding:10px 20px;font-size:14px}
+
+/* hero */
+.hero{position:relative;padding-top:28px}
+.hero-title{margin:0;text-align:center;font-family:var(--f-puff);font-weight:400;color:var(--tomato);line-height:.86;font-size:clamp(64px,15vw,196px);text-transform:uppercase}
+.hero-title .amp{display:inline-block;color:var(--lime);-webkit-text-stroke:3px var(--ink);transform:rotate(-8deg) translateY(-.04em);font-size:.8em}
+.hero-title .small{display:block;font-size:.42em;color:var(--ink);margin-bottom:.06em}
+.hero-stage{position:relative;margin:clamp(-26px,-2.5vw,-14px) auto 0;max-width:980px}
+.tv{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#000;aspect-ratio:16/9;border:3px solid var(--ink)}
+.tv img{width:100%;height:100%;object-fit:cover}
+.tv::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 60px 18px rgba(0,0,0,.55);pointer-events:none}
+.hero .tv{transform:rotate(-1.2deg);box-shadow:0 10px 0 var(--ink)}
+.float{position:absolute;z-index:2;animation:bob 5s ease-in-out infinite}
+.float:nth-child(2){animation-delay:-1.2s}.float:nth-child(3){animation-delay:-2.4s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-8px) rotate(var(--rot,0deg))}}
+.f1{left:-2%;top:12%;--rot:-6deg;background:var(--pink)}
+.f2{right:-1%;top:6%;--rot:5deg;background:var(--lime)}
+.f3{left:50%;bottom:-22px;--rot:-2deg;translate:-50% 0;background:var(--tomato);color:var(--cream)}
+.hero-sub{max-width:560px;margin:46px auto 0;text-align:center;font-size:clamp(18px,2.2vw,21px);color:var(--ink-soft)}
+.hero-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin:26px 0 0}
+
+/* cloud edges */
+.cloud{display:block;width:100%;height:clamp(48px,7vw,90px);margin-top:-1px}
+.cloud path{fill:currentColor}
+
+/* prompts band */
+.band-red{background:var(--tomato);color:var(--cream)}
+.section{padding-block:clamp(40px,6vw,72px) clamp(56px,8vw,96px)}
+.eyebrow{font:400 24px/1 var(--f-hand);margin:0 0 10px}
+.h2{margin:0;font:800 clamp(38px,6.4vw,76px)/.95 var(--f-sans);letter-spacing:-.035em;text-transform:lowercase;text-wrap:balance}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0 0;font:600 18px/1.3 var(--f-sans)}
+.flow .chip{color:var(--ink)}
+.howto{margin:28px 0 0;max-width:760px;padding:18px 22px;border-radius:var(--r-md);background:var(--cream);color:var(--ink);border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink);font-size:17px}
+.howto b{font-weight:800}
+.howto mark,.prompt mark{background:var(--lime);color:var(--ink);border-radius:5px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.prompts{list-style:none;margin:48px 0 0;padding:0;display:grid;gap:32px}
+.card{--card:var(--pink);background:var(--card);color:var(--ink);border:3px solid var(--ink);border-radius:var(--r-lg);box-shadow:0 8px 0 var(--ink);overflow:hidden}
+.card:nth-child(2){--card:var(--sky-soft)}
+.card:nth-child(3){--card:var(--lime)}
+.card-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,32px)}
+.card-head{display:flex;gap:16px;align-items:flex-start}
+.num{flex:none;width:58px;height:58px;border-radius:50%;background:var(--cream);border:3px solid var(--ink);display:grid;place-items:center;font:400 28px/1 var(--f-puff)}
+.card h3{margin:2px 0 8px;font:800 clamp(26px,3.2vw,36px)/1 var(--f-sans);letter-spacing:-.02em}
+.tag{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--ink);color:var(--cream);font:400 18px/1 var(--f-hand)}
+.refs-title{margin:20px 0 8px;font:800 13px/1 var(--f-sans);letter-spacing:.12em;text-transform:uppercase}
+.refs{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.refs li{display:flex;gap:10px;align-items:baseline;font-size:17px}
+.refs code{flex:none;padding:3px 9px;border-radius:999px;background:var(--cream);border:2px solid var(--ink);font:500 13px/1.4 var(--f-mono)}
+.card .tv{border-radius:var(--r-md);box-shadow:0 6px 0 var(--ink)}
+.card .tv::after{box-shadow:inset 0 0 36px 8px rgba(0,0,0,.45)}
+.ref-pair{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:12px;height:clamp(240px,26vw,300px)}
+.ref-tile{position:relative;margin:0;border:3px solid var(--ink);border-radius:var(--r-md);overflow:hidden;background:#000;box-shadow:0 6px 0 var(--ink)}
+.ref-tile:nth-child(1){rotate:-1.5deg}.ref-tile:nth-child(2){rotate:2deg}
+.ref-tile img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.ref-pair .ref-tile:nth-child(2){background:var(--cream-deep)}
+.ref-pair .ref-tile:nth-child(2) img{object-fit:contain}
+.card-top.stack{grid-template-columns:minmax(0,1fr)}
+.outcome{grid-column:1/-1;display:grid;justify-items:center;gap:14px;margin-top:4px}
+.outcome-arrow{rotate:90deg}
+.outcome-row{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.outcome-row.is-video{grid-template-columns:minmax(0,1fr);max-width:820px}
+.outcome-row video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+.outcome-row.is-video figcaption{top:12px;bottom:auto;left:12px}
+.outcome-row .ref-tile:nth-child(2){rotate:-1deg}
+@media (max-width:640px){.outcome-row{grid-template-columns:minmax(0,1fr)}}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.trio .ref-tile{aspect-ratio:16/9;border-radius:var(--r-sm);box-shadow:0 5px 0 var(--ink)}
+.trio .ref-tile:nth-child(1){rotate:-1.2deg}.trio .ref-tile:nth-child(2){rotate:1deg}.trio .ref-tile:nth-child(3){rotate:-.6deg}
+.refs-extra{padding-left:2px;font:400 21px/1.2 var(--f-hand)}
+.refs-extra::before{content:"\2192";font-family:var(--f-sans);font-weight:800}
+@media (max-width:640px){.trio{grid-template-columns:minmax(0,1fr)}}
+.board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.6fr);gap:14px;align-items:center}
+.board-refs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.board-refs .ref-tile{aspect-ratio:1;rotate:0deg;border-radius:var(--r-sm);box-shadow:0 4px 0 var(--ink)}
+.board-refs .ref-tile:nth-child(odd){rotate:-1.5deg}.board-refs .ref-tile:nth-child(even){rotate:1.5deg}
+.board-refs figcaption{left:6px;bottom:6px;padding:2px 8px;font-size:11px}
+.board-arrow{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font:800 26px/1 var(--f-sans)}
+.board-result{aspect-ratio:16/9;rotate:1deg}
+.board-result figcaption{background:var(--lime)}
+@media (max-width:640px){
+  .board{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .board-refs{grid-template-columns:repeat(4,minmax(0,1fr));width:100%}
+  .board-arrow{rotate:90deg;width:44px;height:44px}
+  .board-result{width:100%}
+  .board-refs figcaption{left:4px;bottom:4px;padding:1px 6px;font-size:10px}
+  .board-refs figcaption .word{display:none}
+}
+.ref-pair{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);height:clamp(260px,30vw,340px)}
+.ref-tile figcaption{position:absolute;left:10px;bottom:10px;padding:4px 10px;border-radius:999px;background:var(--cream);border:2px solid var(--ink);font:500 12px/1.3 var(--f-mono);white-space:nowrap}
+.card-prompt{padding:0 clamp(20px,3vw,32px) clamp(22px,3vw,32px)}
+.prompt-box{position:relative;background:rgba(255,255,255,.78);border:2px dashed rgba(31,26,22,.4);border-radius:var(--r-md);padding:18px 20px 20px}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.prompt-bar span{font:800 13px/1 var(--f-sans);letter-spacing:.12em;text-transform:uppercase}
+.prompt{margin:0;font:400 14px/1.75 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt.long{max-height:420px;overflow:auto}
+.note{margin:16px 0 0;padding:14px 18px;border-radius:var(--r-sm);background:var(--cream);border:2px solid var(--ink);font-size:16px}
+.note b{font-weight:800}
+.tips{margin:8px 0 0;padding-left:20px}
+.tips li{margin:4px 0}
+
+/* stamp CTA */
+.stamp-band{background:var(--grass) radial-gradient(circle at 20% 10%,rgba(212,245,60,.25),transparent 55%);padding-bottom:40px}
+.stamp-wrap{display:grid;place-items:center;padding-block:clamp(72px,10vw,120px)}
+.stamp-outer{position:relative;transform:rotate(-1.5deg);filter:drop-shadow(0 10px 0 rgba(0,0,0,.25))}
+.stamp{position:relative;width:min(100%,720px);padding:14px;background:#FFFDF8;text-align:center;
+  -webkit-mask:radial-gradient(circle,#0000 9px,#000 9.5px) -14px -14px/28px 28px round,linear-gradient(#000 0 0) content-box;
+          mask:radial-gradient(circle,#0000 9px,#000 9.5px) -14px -14px/28px 28px round,linear-gradient(#000 0 0) content-box}
+.stamp-in{padding:clamp(28px,5vw,52px) clamp(14px,4vw,46px)}
+.tape{position:absolute;left:50%;width:150px;height:44px;background:rgba(245,214,50,.88);translate:-50% 0;z-index:2;box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.tape.top{top:-20px;rotate:-3deg}.tape.bot{bottom:-20px;rotate:2deg}
+.stamp .h2{color:var(--sky);font-family:var(--f-hand);font-weight:400;text-transform:none;letter-spacing:0;font-size:clamp(40px,7vw,78px);line-height:1}
+.stamp .h2 em{font-style:normal;color:var(--tomato)}
+.stamp p{max-width:40ch;margin:18px auto 26px;font-size:18px}
+
+/* footer */
+.launch{display:block;background:var(--ink);color:var(--cream);text-decoration:none;border-bottom:4px solid var(--lime)}
+.launch-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 20px;padding-block:clamp(18px,3vw,30px);text-align:center}
+.launch-tag{padding:6px 14px;border-radius:999px;background:var(--tomato);color:var(--cream);font:400 22px/1 var(--f-hand);rotate:-4deg}
+.launch-title{font:400 clamp(46px,10vw,132px)/.9 "Anton",Impact,"Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:-.01em;color:var(--lime);text-wrap:balance;text-shadow:-.02em 0 0 rgba(229,67,46,.55),.035em .045em 0 #000;filter:url(#rough)}
+.launch-cta{padding:10px 18px;border-radius:999px;border:2px solid var(--lime);color:var(--lime);font:800 15px/1 var(--f-sans);transition:background .18s ease,color .18s ease}
+.launch:hover .launch-cta{background:var(--lime);color:var(--ink)}
+.foot{position:relative;margin-top:-40px;background:var(--tomato);color:var(--cream);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:clamp(40px,6vw,64px) 0 calc(24px + env(safe-area-inset-bottom))}
+.foot-brand{display:flex;justify-content:center}
+.foot-logo{display:inline-flex;align-items:center;gap:clamp(12px,2vw,24px);text-decoration:none;color:var(--cream)}
+.foot-logo img{display:block;width:auto;height:clamp(96px,14vw,160px)}
+.foot-logo span{font:800 clamp(44px,8vw,96px)/1 var(--f-sans);letter-spacing:-.04em}
+.foot-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,244,232,.35);font-size:14px}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .card-top{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .chip{font-size:16px;padding:7px 13px}
+  .hero-stage{margin-top:44px}
+  .f1{left:0;top:-30px}.f2{right:0;top:-24px}
+  .num{width:46px;height:46px;font-size:22px}
+  .prompt{font-size:13px}
+  .pill{width:100%}
+  .nav .pill,.prompt-bar .pill{width:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .float{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .pill{transition:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
+<a class="launch hf-link" href="https://higgsfield.ai/s/higgsfield-black-friday-seedance-2-5-4k-ig-zoharco-VBzEiN" target="_blank" rel="noopener">
+  <span class="wrap launch-in">
+    <span class="launch-title">seedance 2.5 in 4k</span>
+  </span>
+</a>
+
+<header class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="https://zoedits.com"><img src="img/logo-zoedits.png" alt="" width="231" height="225"><span>zoedits</span></a>
+    <a class="pill hf-link" href="https://higgsfield.ai/s/higgsfield-black-friday-seedance-2-5-4k-ig-zoharco-VBzEiN" target="_blank" rel="noopener">try higgsfield</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <h1 class="hero-title" id="hero-title"><span class="small">the prompts</span>mini <span class="amp" aria-hidden="true">&amp;</span><span class="sr">and</span> giant me</h1>
+    <div class="hero-stage">
+      <div class="float chip f1">3 prompts</div>
+      <div class="float chip f2">any person, any place</div>
+      <div class="float chip f3">copy · paste · go</div>
+      <div class="tv">
+        <img src="img/tiny-in-hand.jpg" alt="Giant Zoe blowing on a tiny version of herself standing in her palm, rolling green hills behind" width="1600" height="900" fetchpriority="high">
+      </div>
+    </div>
+    <p class="hero-sub">The exact prompts from the tutorial. Copy them, swap in your own details, and make your own tiny-and-giant video.</p>
+    <div class="hero-cta">
+      <a class="pill" href="#prompts">get the prompts &darr;</a>
+      <a class="pill pill-ink hf-link" href="https://higgsfield.ai/s/higgsfield-black-friday-seedance-2-5-4k-ig-zoharco-VBzEiN" target="_blank" rel="noopener">open higgsfield &rarr;</a>
+    </div>
+  </section>
+
+  <svg class="cloud" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="color:var(--tomato);margin-top:56px"><path d="M0 90V58c40-30 90-36 130-10 30-34 96-40 130-4 34-30 92-30 122 4 38-36 110-34 138 6 36-28 96-28 124 6 40-40 118-36 146 4 30-30 88-32 120 0 38-34 104-34 134 4 34-28 90-28 118 4 40-38 110-34 140 2 30-28 80-30 112-6 20-12 40-12 56-6V90z"/></svg>
+
+  <section class="band-red" id="prompts" aria-labelledby="prompts-title">
+    <div class="wrap section">
+      <p class="eyebrow">prompt templates</p>
+      <h2 class="h2" id="prompts-title">three prompts, two tools</h2>
+      <p class="flow"><span class="chip">seedream 5.5</span> &rarr; <span class="chip">seedance 2.5</span> works for any person, outfit and location</p>
+      <div class="howto"><b>How to use:</b> replace everything in <mark>[SQUARE BRACKETS]</mark> with your own details (an example is shown in each). Upload the reference images in the order listed, so each @image number matches. Keep the rest of the text unchanged.</div>
+      <ol class="prompts" id="prompt-list"></ol>
+    </div>
+  </section>
+  <svg class="cloud" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="color:var(--tomato);transform:scaleY(-1);background:var(--grass)"><path d="M0 90V58c40-30 90-36 130-10 30-34 96-40 130-4 34-30 92-30 122 4 38-36 110-34 138 6 36-28 96-28 124 6 40-40 118-36 146 4 30-30 88-32 120 0 38-34 104-34 134 4 34-28 90-28 118 4 40-38 110-34 140 2 30-28 80-30 112-6 20-12 40-12 56-6V90z"/></svg>
+
+  <section class="stamp-band" aria-labelledby="cta-title">
+    <div class="wrap stamp-wrap">
+      <div class="stamp-outer reveal">
+        <span class="tape top" aria-hidden="true"></span>
+        <div class="stamp"><div class="stamp-in">
+          <h2 class="h2" id="cta-title">your turn to go <em>mini</em> &amp; <em>giant</em></h2>
+          <p>Open Higgsfield, paste the prompts, and make your own.</p>
+          <a class="pill pill-ink hf-link" href="https://higgsfield.ai/s/higgsfield-black-friday-seedance-2-5-4k-ig-zoharco-VBzEiN" target="_blank" rel="noopener">open higgsfield &rarr;</a>
+        </div></div>
+        <span class="tape bot" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-brand"><a class="foot-logo" href="https://zoedits.com"><img src="img/logo-zoedits-cream.png" alt="" width="380" height="369" loading="lazy"><span>zoedits</span></a></div>
+    <div class="foot-base">
+      <span>&copy; 2026 zoedits</span>
+      <span>made with higgsfield · seedream 5.5 · seedance 2.5</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ==========================================================
+     YOUR HIGGSFIELD LINK — every "higgsfield" button uses this.
+     ========================================================== */
+  var HIGGSFIELD_LINK = "https://higgsfield.ai/s/higgsfield-black-friday-seedance-2-5-4k-ig-zoharco-VBzEiN";
+
+  /* ==========================================================
+     PROMPTS — from "Prompt templates" PDF.
+     ========================================================== */
+  var PROMPTS = [
+    {
+      title: "Character sheet",
+      sub: "make one per outfit",
+      model: "seedream 5.5",
+      results: [
+        { src: "img/sheet-small.jpg", label: "small outfit", alt: "Result: character sheet of the small version in a red crop tee, black denim and silver bag, four seated views" },
+        { src: "img/sheet-giant.jpg", label: "giant outfit", alt: "Result: character sheet of the giant version in a green and yellow striped long-sleeve top with a brown leather bag, four seated views" }
+      ],
+      pair: [
+        { src: "img/ref-face.jpg", label: "@image 1-2", alt: "Reference photo: Zoe's face, close-up portrait in front of a brick wall", w: 1400, h: 787 },
+        { src: "img/ref-outfit.jpg", label: "@image 3", alt: "Reference photo: outfit with red 'don't be jealous' crop tee, black denim shorts, silver bag and suede clogs", w: 539, h: 1200 }
+      ],
+      refs: [["@image 1-2", "the real person (face, hair, build)"], ["@image 3", "the outfit"]],
+      text: "@image 1-2 are the reference for how the person looks.\n@image 3 is the outfit.\n\nCreate an ultra-photorealistic horizontal 16:9 character sheet of the person in the reference images. Keep their exact face, hair, skin tone and build. They ONLY wear the outfit in @image 3, with the same accessories. The hair, face and makeup stay the same. 4 views side by side on a seamless light grey studio background, all seated, never full body: far left a large close-up portrait, smiling; next a seated front view from the waist up, looking straight into the lens; next a seated side profile facing right; far right a seated side profile facing left. The face is sharp and clearly visible in every view. Same soft, even studio light across the whole sheet. No text, no labels.",
+      note: "Make two sheets: one in the \"small\" outfit and one in the \"giant\" outfit, using the same two face references."
+    },
+    {
+      title: "Location",
+      sub: "",
+      model: "seedream 5.5",
+      board: {
+        refs: [
+          { src: "img/loc-ref-1.jpg", alt: "Reference: empty road with a crosswalk, a tall lamp post and dark trees under a clear sky" },
+          { src: "img/loc-ref-2.jpg", alt: "Reference: a white chair and small table on top of a round grassy hill" },
+          { src: "img/loc-ref-3.jpg", alt: "Reference: a fluffy sheep on a green field under puffy clouds" },
+          { src: "img/loc-ref-4.jpg", alt: "Reference: a huge white cloud behind rolling green hills" }
+        ],
+        result: { src: "img/loc-result.jpg", alt: "Result: curving road with a crosswalk, lamp post, trees, rolling green hills with a chair and table on top, and big white clouds" }
+      },
+      refs: [["@image 1", "a photo or a rough idea of the place"]],
+      text: "Create a photorealistic 16:9 location based on this image. [OPTIONAL: remove / change anything you don't want, e.g. \"remove the people\", \"remove the animals\"]. No people, empty scene, clean natural daylight, no text."
+    },
+    {
+      title: "video: \"mini & giant you\"",
+      sub: "",
+      model: "seedance 2.5 · 4K · 10 seconds",
+      video: { src: "video/mini-giant-result.mp4", label: "result" },
+      trio: [
+        { src: "img/sheet-small.jpg", label: "@image 1", alt: "Character sheet of the small version: Zoe in a red 'don't be jealous' crop tee, black denim and a silver bag, four seated views" },
+        { src: "img/sheet-giant.jpg", label: "@image 2", alt: "Character sheet of the giant version: Zoe in a green and yellow striped long-sleeve top with a brown leather bag, four seated views" },
+        { src: "img/loc-result.jpg", label: "@image 3", alt: "The location: curving road with a crosswalk, lamp post, trees and rolling green hills under big white clouds" }
+      ],
+      refs: [["@image 1", "character sheet of the small version"], ["@image 2", "character sheet of the giant version"], ["@image 3", "the location"], ["", "describe your scene"]],
+      text: "Reference images: @Image1 is the small woman's character sheet ([SMALL OUTFIT, e.g. red t-shirt, black jeans, silver shoulder bag]): her identity, outfit and face, including the close-up face and the three-quarter and profile views. @Image2 is the giant woman's character sheet ([GIANT OUTFIT, e.g. green and yellow striped long-sleeve top, black pants, brown leather bag]): her identity and outfit, including the close-up face. @Image3 is the location: [LOCATION, e.g. a curved empty road with a crosswalk, green rolling hills, a tall lamp post on the right, dense trees on the left, blue sky with white clouds]. Both women are the same real person: exactly the same face, hair and natural skin as in the character sheets, with the chin and jawline proportions kept exactly as in the references.\n\nOne continuous handheld camera shot, no cuts, 10 seconds total. Realistic camcorder footage with slight hand shake.\n\n0-2s: A close medium shot. The small woman in [SMALL OUTFIT] stands close to the camera, framed from the thighs up, with the location of @Image3 behind her. The camera zooms in slightly toward her; the focus drifts soft for a moment, then snaps sharp on her face.\n\n2-3.5s: She glances around the location, then looks into the camera and says, unimpressed: \"[LINE 1, e.g. All of this?]\" As she finishes the line, a small, unbothered half-smile, closed mouth, just a slight lift at the corner of her lips. Not a big smile.\n\n3.5-5s: The moment she finishes speaking, the rumble starts, with no pause. The giant takes three big steps toward her, each a deep thump that shakes the ground and jolts the camera. Thump one: a giant [GIANT SHOE] and a leg in [GIANT PANTS] step into frame from the left. Thump two: the other foot lands, closer. Thump three: the first foot lands again beside her, as tall as [A TALL OBJECT IN THE LOCATION, e.g. the lamp post]. A huge shadow slides over the small woman. She looks up to her left.\n\n5-7.5s: The camera pans left and tilts up along the giant's body: [GIANT OUTFIT, from the bottom to the top], up to her face against the sky. The camera pulls back slightly as the focus adjusts, so the whole giant becomes visible.\n\n7.5-10s: Low angle on the giant woman's face, shot from a long distance so her face is not stretched or distorted. She is the same woman as in @Image2, same face and hair, wearing [GIANT OUTFIT]. She looks down, smiles, and says: \"[LINE 2, e.g. Was made in 3 steps.]\"\n\nAudio: light wind, birds, exactly three heavy footstep thumps, both voices the same woman's voice, the giant's slightly deeper and echoing. No music."
+    }
+  ];
+
+  function el(tag, cls, text){ var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  // Wrap [BRACKETS] in a highlight so people see what to replace
+  function fillPrompt(node, text){
+    text.split(/(\[[^\]]+\])/).forEach(function(part){
+      if (/^\[[^\]]+\]$/.test(part)) node.appendChild(el("mark", null, part));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+  }
+
+  function copyText(text, node, btn, idle){
+    function done(){ btn.textContent = "copied!"; btn.setAttribute("data-done", ""); setTimeout(function(){ btn.textContent = idle; btn.removeAttribute("data-done"); }, 1600); }
+    function fallback(){
+      try { var r = document.createRange(); r.selectNodeContents(node); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = "selected, press copy"; setTimeout(function(){ btn.textContent = idle; }, 2200); } catch (e) {}
+    }
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }
+
+  var list = document.getElementById("prompt-list");
+  PROMPTS.forEach(function (p, i) {
+    var li = el("li", "card reveal");
+    var top = el("div", "card-top");
+    var left = el("div");
+    var head = el("div", "card-head");
+    head.appendChild(el("div", "num", String(i + 1)));
+    var hwrap = el("div");
+    var h = el("h3", null, p.title + (p.sub ? " (" + p.sub + ")" : ""));
+    hwrap.appendChild(h); hwrap.appendChild(el("span", "tag", p.model));
+    head.appendChild(hwrap); left.appendChild(head);
+    left.appendChild(el("p", "refs-title", "References"));
+    var refs = el("ul", "refs");
+    p.refs.forEach(function(r){
+      var li2 = el("li");
+      if (r[0]) li2.appendChild(el("code", null, r[0])); else li2.className = "refs-extra";
+      li2.appendChild(el("span", null, r[1])); refs.appendChild(li2);
+    });
+    left.appendChild(refs);
+    var tv;
+    if (p.pair) {
+      tv = el("div", "ref-pair");
+      p.pair.forEach(function(r){
+        var f = el("figure", "ref-tile"); var im = el("img"); im.src = r.src; im.alt = r.alt; im.width = r.w; im.height = r.h; im.loading = "lazy";
+        f.appendChild(im); f.appendChild(el("figcaption", null, r.label)); tv.appendChild(f);
+      });
+    } else if (p.trio) {
+      top.classList.add("stack");
+      tv = el("div", "trio");
+      p.trio.forEach(function(r){
+        var f = el("figure", "ref-tile"); var im = el("img"); im.src = r.src; im.alt = r.alt; im.width = 1600; im.height = 900; im.loading = "lazy";
+        f.appendChild(im); f.appendChild(el("figcaption", null, r.label)); tv.appendChild(f);
+      });
+    } else if (p.board) {
+      top.classList.add("stack");
+      tv = el("div", "board");
+      var grid = el("div", "board-refs");
+      p.board.refs.forEach(function(r, k){
+        var f = el("figure", "ref-tile"); var im = el("img"); im.src = r.src; im.alt = r.alt; im.loading = "lazy";
+        var cap = el("figcaption"); cap.appendChild(el("span", "word", "ref ")); cap.appendChild(document.createTextNode(String(k + 1)));
+        f.appendChild(im); f.appendChild(cap); grid.appendChild(f);
+      });
+      var arrow = el("div", "board-arrow", "→"); arrow.setAttribute("aria-hidden", "true");
+      var res = el("figure", "ref-tile board-result"); var rim = el("img"); rim.src = p.board.result.src; rim.alt = p.board.result.alt; rim.width = 1600; rim.height = 900; rim.loading = "lazy";
+      res.appendChild(rim); res.appendChild(el("figcaption", null, "result"));
+      tv.appendChild(grid); tv.appendChild(arrow); tv.appendChild(res);
+    } else {
+      tv = el("div", "tv"); var img = el("img"); img.src = p.img; img.alt = p.alt; img.width = 1600; img.height = 900; img.loading = "lazy"; tv.appendChild(img);
+    }
+    top.appendChild(left); top.appendChild(tv);
+
+    // Result row: arrow + outcome (images or a silent looping video)
+    if (p.results || p.video) {
+      var out = el("div", "outcome");
+      var down = el("div", "board-arrow outcome-arrow", "→"); down.setAttribute("aria-hidden", "true");
+      out.appendChild(down);
+      var row = el("div", "outcome-row" + (p.video ? " is-video" : ""));
+      if (p.results) {
+        p.results.forEach(function(r){
+          var f = el("figure", "ref-tile board-result"); var im = el("img"); im.src = r.src; im.alt = r.alt; im.width = 1600; im.height = 900; im.loading = "lazy";
+          f.appendChild(im); f.appendChild(el("figcaption", null, r.label)); row.appendChild(f);
+        });
+      } else {
+        var vf = el("figure", "ref-tile board-result");
+        var v = document.createElement("video");
+        v.src = p.video.src; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.controls = true; v.preload = "metadata";
+        v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("aria-label", "Result video: mini and giant me, made with this prompt");
+        vf.appendChild(v); vf.appendChild(el("figcaption", null, p.video.label)); row.appendChild(vf);
+      }
+      out.appendChild(row); top.appendChild(out);
+    }
+
+    var bottom = el("div", "card-prompt");
+    var box = el("div", "prompt-box");
+    var bar = el("div", "prompt-bar"); bar.appendChild(el("span", null, "Prompt"));
+    var pre = el("p", "prompt" + (p.text.length > 1500 ? " long" : "")); pre.tabIndex = 0; fillPrompt(pre, p.text);
+    var btn = el("button", "pill pill-ink", "copy prompt"); btn.type = "button"; btn.setAttribute("aria-label", "Copy the " + p.title + " prompt");
+    btn.addEventListener("click", function(){ copyText(p.text, pre, btn, "copy prompt"); });
+    bar.appendChild(btn); box.appendChild(bar); box.appendChild(pre); bottom.appendChild(box);
+    if (p.note) { var n = el("div", "note"); n.textContent = p.note; bottom.appendChild(n); }
+    if (p.tips) {
+      var t = el("div", "note"); t.appendChild(el("b", null, "Tips for a consistent result"));
+      var ul = el("ul", "tips"); p.tips.forEach(function(x){ ul.appendChild(el("li", null, x)); }); t.appendChild(ul); bottom.appendChild(t);
+    }
+    li.appendChild(top); li.appendChild(bottom); list.appendChild(li);
+  });
+
+  document.querySelectorAll(".hf-link").forEach(function(a){ a.href = HIGGSFIELD_LINK; });
+
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    els.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function(e){ io.observe(e); });
+  }
+})();
+</script>
+</body>
+</html>
