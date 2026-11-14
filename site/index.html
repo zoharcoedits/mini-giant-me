@@ -9,6 +9,8 @@
 <meta property="og:description" content="The exact prompts from the tutorial. Copy them, swap in your details, make your own.">
 <meta property="og:image" content="img/tiny-in-hand.jpg">
 <meta name="theme-color" content="#FFF4E8">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Gochi+Hand&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -354,6 +356,7 @@ a{color:inherit}
     try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
   }
 
+  var lazyVideos = [];
   var list = document.getElementById("prompt-list");
   PROMPTS.forEach(function (p, i) {
     var li = el("li", "card reveal");
@@ -419,8 +422,11 @@ a{color:inherit}
       } else {
         var vf = el("figure", "ref-tile board-result");
         var v = document.createElement("video");
-        v.src = p.video.src; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.controls = true; v.preload = "metadata";
+        // Lazy video: nothing downloads until the player is about to scroll into view.
+        v.muted = true; v.loop = true; v.playsInline = true; v.controls = true; v.preload = "none";
         v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("aria-label", "Result video: mini and giant me, made with this prompt");
+        v.dataset.src = p.video.src;
+        lazyVideos.push(v);
         vf.appendChild(v); vf.appendChild(el("figcaption", null, p.video.label)); row.appendChild(vf);
       }
       out.appendChild(row); top.appendChild(out);
@@ -442,6 +448,21 @@ a{color:inherit}
   });
 
   document.querySelectorAll(".hf-link").forEach(function(a){ a.href = HIGGSFIELD_LINK; });
+
+  // Start loading (and playing) each video only when it is close to the screen.
+  function startVideo(v){
+    if (!v.dataset.src) return;
+    v.src = v.dataset.src; delete v.dataset.src;
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  }
+  if ("IntersectionObserver" in window) {
+    var vio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting){ startVideo(en.target); vio.unobserve(en.target); } });
+    }, { rootMargin: "300px 0px" });
+    lazyVideos.forEach(function(v){ vio.observe(v); });
+  } else {
+    lazyVideos.forEach(startVideo);
+  }
 
   var els = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
